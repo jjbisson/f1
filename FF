@@ -1,0 +1,23 @@
+# List of players with their stats
+players = [
+    {"name": "Tyreek Hill", "catches": 81, "targets": 106, "yards": 1148, "touchdowns": 8},
+    {"name": "Stefon Diggs", "catches": 72, "targets": 99, "yards": 1045, "touchdowns": 7},
+    {"name": "Justin Jefferson", "catches": 69, "targets": 100, "yards": 965, "touchdowns": 6}
+]
+
+# Function to calculate catch rate
+def calculate_catch_rate(catches, targets):
+    return (catches / targets) * 100 if targets > 0 else 0
+
+# Function to calculate fantasy points (standard PPR scoring)
+def calculate_fantasy_points(player):
+    PPR_POINTS = player["catches"] * 1.0  # 1 point per reception
+    YARD_POINTS = player["yards"] * 0.1   # 1 point per 10 yards
+    TD_POINTS = player["touchdowns"] * 6  # 6 points per touchdown
+    return PPR_POINTS + YARD_POINTS + TD_POINTS
+
+# Display each player's catch rate and fantasy points
+for player in players:
+    catch_rate = calculate_catch_rate(player["catches"], player["targets"])
+    fantasy_points = calculate_fantasy_points(player)
+    print(f"{player['name']} - Catch Rate: {catch_rate:.2f}% | Fantasy Points: {fantasy_points:.2f}")
